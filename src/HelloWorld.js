@@ -4,7 +4,11 @@ import './App.css';
 class HelloWorld extends Component{
     render(){
         return(
-            <div className="warna">Hallo from Component</div> 
+            <div>
+            <div className="warna">Nama : {this.props.nama} <br></br> Nik : {this.props.nik}</div> 
+            <div className="warna">Nik : {this.props.nik}</div> 
+            </div>
+            
         )
     }
 }
