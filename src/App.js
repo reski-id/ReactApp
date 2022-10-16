@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import axios from "axios";
 
 
 class App extends Component{
@@ -10,23 +11,20 @@ class App extends Component{
   }
 
   componentDidMount(){
-    fetch("https://raw.githubusercontent.com/algosigma/js-reactjs/master/homestays.json")
-    .then(response => response.json())
-    .then((data)=>{
-      this.setState({
-        homestays:data
-      })
-    })
+    axios.get("https://raw.githubusercontent.com/algosigma/js-reactjs/master/homestays.json")
+    .then(res => {
+      const homestays = res.data;
+      this.setState({homestays});
+    });
   }
 
   render(){
     return(
-      // <div className="warna">Hallo Semuanya</div>
       <div>
         {
-          this.state.homestays.map((index,key) => 
+          this.state.homestays.map((index) => 
             <div>
-              <h3>{index.id}. {index.nama} Rp. {index.harga}rb</h3>
+              <h3 key={index.id}>{index.id}. {index.nama} Rp. {index.harga}rb</h3>
             </div>
               
             )
@@ -35,5 +33,5 @@ class App extends Component{
     )
   }
 }
-  
+
 export default App;
