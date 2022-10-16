@@ -5,28 +5,28 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-      siswa : [
-        {
-          id:12,
-          nama:"Reski",
-        },
-        {
-          id:13,
-          nama:"Ahmad",
-        }
-      ]
+      homestays : []
     }
   }
 
+  componentDidMount(){
+    fetch("https://raw.githubusercontent.com/algosigma/js-reactjs/master/homestays.json")
+    .then(response => response.json())
+    .then((data)=>{
+      this.setState({
+        homestays:data
+      })
+    })
+  }
 
   render(){
     return(
       // <div className="warna">Hallo Semuanya</div>
       <div>
         {
-          this.state.siswa.map((index,key) => 
+          this.state.homestays.map((index,key) => 
             <div>
-              <h3>{index.id}. {index.nama}</h3>
+              <h3>{index.id}. {index.nama} Rp. {index.harga}rb</h3>
             </div>
               
             )
