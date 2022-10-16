@@ -1,26 +1,36 @@
 import React, {Component} from "react";
 
-import HelloWorld from "./HelloWorld";
 
 class App extends Component{
   constructor(){
     super();
     this.state = {
-      data : ""
+      siswa : [
+        {
+          id:12,
+          nama:"Reski",
+        },
+        {
+          id:13,
+          nama:"Ahmad",
+        }
+      ]
     }
   }
 
-  handleChange=(event)=>{
-this.setState({
-  data: event.target.value
-})
-  }
+
   render(){
     return(
       // <div className="warna">Hallo Semuanya</div>
       <div>
-        <input type ="text" onChange={this.handleChange}/>
-        <h3>{this.state.data}</h3>
+        {
+          this.state.siswa.map((index,key) => 
+            <div>
+              <h3>{index.id}. {index.nama}</h3>
+            </div>
+              
+            )
+        }
       </div>
     )
   }
